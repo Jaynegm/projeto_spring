@@ -15,4 +15,8 @@ public class ProdutoService {
     public List<Produto> listarProdutos() {
         return produtoRepository.findAll();
     }
+
+    public void adicionarProduto(Produto produto) {
+        produtoRepository.insert(produto); // Mantenha a lógica de inserção aqui
+    }
 }
