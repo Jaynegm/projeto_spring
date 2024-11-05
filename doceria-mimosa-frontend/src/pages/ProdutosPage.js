@@ -10,7 +10,6 @@ const ProdutosPage = () => {
             try {
                 const response = await fetch('http://localhost:8081/api/produtos');
                 const data = await response.json();
-                console.log('Produtos retornados:', data); // Adicione este log
                 setProdutos(data);
             } catch (error) {
                 console.error('Erro ao buscar produtos:', error);
@@ -21,20 +20,41 @@ const ProdutosPage = () => {
     }, []);
 
     return (
-        <div style={{ padding: '20px' }}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+        <div style={styles.container}>
+            <h2 style={styles.heading}>Nossos Produtos</h2>
+            <div style={styles.grid}>
                 {produtos.length > 0 ? (
                     produtos.map((produto) => (
-                        <div style={{ flex: '1 1 21%', margin: '10px' }} key={produto.id}>
-                            <ProdutoCard product={produto} />
-                        </div>
+                        <ProdutoCard key={produto.id} produto={produto} />
                     ))
                 ) : (
-                    <p style={{ textAlign: 'center' }}>Nenhum produto encontrado.</p>
+                    <p style={styles.noProducts}>Nenhum produto encontrado.</p>
                 )}
             </div>
         </div>
     );
+};
+
+const styles = {
+    container: {
+        padding: '20px',
+    },
+    heading: {
+        textAlign: 'center',
+        fontSize: '24px',
+        margin: '20px 0',
+        color: '#D2691E', // Cor marrom
+    },
+    grid: {
+        display: 'grid', // Mudei de flex para grid
+        gridTemplateColumns: 'repeat(4, 1fr)', // Define 4 colunas
+        gap: '5px',
+    },
+    noProducts: {
+        textAlign: 'center',
+        fontSize: '18px',
+        color: '#888',
+    },
 };
 
 export default ProdutosPage;

@@ -1,49 +1,48 @@
 // src/componentes/ProdutoCard.js
 import React from 'react';
 
-const ProdutoCard = ({ product }) => {
+const ProdutoCard = ({ produto }) => {
+    const { nome, descricao, imagem, valor } = produto;
+
     return (
-        <div style={{
-            border: '1px solid #ccc',
-            borderRadius: '5px',
-            padding: '10px',
-            width: '250px', // largura fixa
-            height: '400px', // altura fixa
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-            margin: '10px' // margem entre os cards
-        }}>
-            <img
-                src={product.imagem}
-                alt={product.nome}
-                style={{
-                    width: '100%',
-                    height: '200px',
-                    objectFit: 'cover', // mantém a proporção da imagem
-                    borderRadius: '5px'
-                }}
-            />
-            <h2 style={{ fontSize: '18px', margin: '10px 0' }}>{product.nome}</h2>
-            <p style={{ fontSize: '14px', textAlign: 'center', flex: '2' }}>{product.descricao}</p>
-            <p style={{ fontSize: '16px', fontWeight: 'bold' }}>Preço: R$ {product.valor}</p>
-            <button style={{
-                padding: '10px 15px',
-                backgroundColor: '#4CAF50',
-                color: 'white',
-                border: 'none',
-                borderRadius: '5px',
-                cursor: 'pointer',
-                transition: 'background-color 0.3s',
-                width: '100%',
-                marginTop: '8px' // adiciona margem para separar do texto acima
-            }}>
-                Comprar
-            </button>
+        <div style={styles.card}>
+            <img src={imagem} alt={nome} style={styles.image} />
+            <h3 style={styles.title}>{nome}</h3>
+            <p style={styles.description}>{descricao}</p>
+            <p style={styles.price}>R$ {valor.toFixed(2)}</p>
         </div>
     );
+};
+
+const styles = {
+    card: {
+        border: '1px solid #ddd',
+        borderRadius: '8px',
+        padding: '16px',
+        textAlign: 'center',
+        maxWidth: '200px',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    },
+    image: {
+        width: '100%',
+        height: '150px',
+        objectFit: 'cover',
+        borderRadius: '8px 8px 0 0',
+    },
+    title: {
+        fontSize: '18px',
+        margin: '10px 0',
+        color: '#333',
+    },
+    description: {
+        fontSize: '14px',
+        color: '#666',
+    },
+    price: {
+        fontSize: '16px',
+        fontWeight: 'bold',
+        color: '#D2691E', // Marrom claro, como tons de doceria
+    },
 };
 
 export default ProdutoCard;
