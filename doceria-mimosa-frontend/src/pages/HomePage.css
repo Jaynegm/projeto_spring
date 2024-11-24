@@ -1,4 +1,7 @@
 /* src/pages/HomePage.css */
+body {
+    margin: 0;
+}
 
 .banner img {
     border-radius: 10px;
